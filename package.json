@@ -1,0 +1,14 @@
+{
+  "name": "awsiotdemo",
+  "version": "1.0.0",
+  "description": "AWS IoT Demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "James Zhang",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.783.0"
+  }
+}
