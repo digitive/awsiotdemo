@@ -2,6 +2,14 @@
 
 This project is a quick demo for using AWS IoT to collect CPU temperature from an edge device, and record it in DynamoDB every 10 seconds. There will be a RESTful API to query the data.
 
+This demo will cover the following parts:
+
+* The Edge Device
+* AWS Lambda (storing and querying data against DynamoDB)
+* DynamoDB
+* API Gateway
+* MQTT
+
 # The Edge Device
 
 It can be any device that compatible with AWS IoT. In this example, I am using my home Plex Media Server (running Ubuntu Server) as the edge device.
@@ -84,4 +92,4 @@ Then a rule need be created to subscribe a topic from MQTT and trigger the `cpuT
 
 # Other Requirements
 
-AWS AMI knowledge are essential to create roles and assign permissions, in order to make all these parts work together.
+AWS IAM knowledge are essential to create roles and assign permissions, in order to make all these parts work together.
