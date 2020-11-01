@@ -1,0 +1,129 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "83f1ea74.b92058",
+        "type": "cpu",
+        "z": "f6f2187d.f17ca8",
+        "name": "device0",
+        "msgCore": false,
+        "msgOverall": false,
+        "msgArray": false,
+        "msgTemp": true,
+        "x": 380,
+        "y": 100,
+        "wires": [
+            [
+                "97c1fe4c.e24ef8"
+            ]
+        ]
+    },
+    {
+        "id": "3d338f18.235f68",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "interval",
+        "props": [],
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 210,
+        "y": 100,
+        "wires": [
+            [
+                "83f1ea74.b92058"
+            ]
+        ]
+    },
+    {
+        "id": "499830fa.a7a068",
+        "type": "mqtt out",
+        "z": "f6f2187d.f17ca8",
+        "name": "mqtt.pub",
+        "topic": "temperature/cpu",
+        "qos": "0",
+        "retain": "false",
+        "broker": "e47335.e0c034c8",
+        "x": 780,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "5053ffe3.20e868",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "97c1fe4c.e24ef8",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "func": "return { \n    topic: \"temperature/cpu\",\n    payload: {\n        deviceId: \"mediaserver_0\",\n        temperature: msg.payload\n    }\n}\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 580,
+        "y": 100,
+        "wires": [
+            [
+                "5053ffe3.20e868",
+                "499830fa.a7a068"
+            ]
+        ]
+    },
+    {
+        "id": "e47335.e0c034c8",
+        "type": "mqtt-broker",
+        "name": "AWSIoT",
+        "broker": "<your_broker>",
+        "port": "8883",
+        "tls": "2a8962ed.f97026",
+        "clientid": "HomeMediaServer",
+        "usetls": true,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "2a8962ed.f97026",
+        "type": "tls-config",
+        "name": "awscertificates",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "<your-cert>",
+        "keyname": "<your-key>",
+        "caname": "<your-ca>",
+        "servername": "",
+        "verifyservercert": false
+    }
+]
