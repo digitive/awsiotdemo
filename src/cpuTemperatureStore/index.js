@@ -1,22 +1,23 @@
 'use strict';
 
 var AWS = require('aws-sdk');
+AWS.config.update({region: 'ap-southeast-2'});
+var docClient = new AWS.DynamoDB.DocumentClient();
 
-exports.handler = async (e, ctx, callback) => {
-    var documentClient = new AWS.DynamoDB.DocumentClient({region: 'ap-southeast-2'});
-    var now = new Date();
-    var param = {
+exports.handler = async (e) => {
+    const now = new Date();
+    const param = {
         Item: {
-            id: e.deviceId + '-'+ now.getTime(),
+            id: e.deviceId,
             receivedAt: now.toISOString(),
             temperature: e.temperature,
-            deviceId: e.deviceId
         },
-        TableName: 'cpu_temperature'
+        TableName: 'cpu_temperature',
     };
     
     try {
-        await documentClient.put(param).promise();
+        await docClient.put(param).promise();
     } catch(err) {
+        console.error(err);
     }
 };
