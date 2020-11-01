@@ -72,3 +72,16 @@ Table name here is  `cpu_temperature`, partition key `id` with a sort key `recei
 An API need to be created under API Gateway and link to cpuTemperatureQuery lambda.
 
 ![API](images/api.png)
+
+# MQTT
+
+In AWS IoT Core, a thing need be created in order to generate certificates, where can be imported into Node-RED as used in edge device.
+
+Then a rule need be created to subscribe a topic from MQTT and trigger the `cpuTemperatureStore` lambda.
+
+![rule](images/rule.png)
+
+
+# Other Requirements
+
+AWS AMI knowledge are essential to create roles and assign permissions, in order to make all these parts work together.
